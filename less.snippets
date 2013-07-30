@@ -1,12 +1,116 @@
 extends css
-###########################################################################
-#                    Most of these came from TextMate                     #
-###########################################################################
-snippet { "properties $1{ $2 } ( } )"
-$1 {
-	/* $2 */
-	$0
+#########################################
+#           snipmate snippets           #
+#########################################
+
+snippet .gradient
+.gradient(${1:@color: #F5F5F5}, ${2:@start: #EEE}, ${3:@stop: #FFF});${4}
+endsnippet
+snippet .background-clip
+.background-clip(${1:@argument: padding-box});${2}
+endsnippet
+snippet .bw-gradient
+.bw-gradient(${1:@color: #F5F5F5}, ${2:@start: 0}, ${3:@stop: 255});${4}
+endsnippet
+snippet .bordered
+.bordered(${1:@top-color: #EEE}, ${2:@right-color: #EEE}, ${3:@bottom-color: #EEE}, ${4:@left-color: #EEE});${5}
+endsnippet
+snippet .drop-shadow
+.drop-shadow(${1:@x-axis: 0}, ${2:@y-axis: 1px}, ${3:@blur: 2px}, ${4:@alpha: 0.1});${5}
+endsnippet
+snippet .inner-shadow
+.inner-shadow(${1:@horizontal:0}, ${2:@vertical:1px}, ${3:@blur:2px}, ${4:@alpha: 0.4});${5}
+endsnippet
+snippet .box-shadow
+.box-shadow(${1:@arguments});${2}
+endsnippet
+snippet .box-sizing
+.box-sizing(${1:@sizing: border-box});${2}
+endsnippet
+snippet .rounded
+.rounded(${1:@radius: 2px});${2}
+endsnippet
+snippet .border-radius
+.border-radius(${1:@topright: 0}, ${2:@bottomright: 0}, ${3:@bottomleft: 0}, ${4:@topleft: 0});${5}
+endsnippet
+snippet .opacity
+.opacity(${1:@opacity: 0.5});${2}
+endsnippet
+snippet .transition-duration
+.transition-duration(${1:@duration: 0.2s});${2}
+endsnippet
+snippet .transform
+.transform(${1:...});${2}
+endsnippet
+snippet .translate
+.translate(${1:@x:0}, ${2:@y:0});${3}
+endsnippet
+snippet .rotation
+.rotation(${1:@deg:5deg});${2}
+endsnippet
+snippet .scale
+.scale(${1:@ratio:1.5});${2}
+endsnippet
+snippet .transition
+.transition(${1:@property @duration @timing-function @delay,...});${2}
+endsnippet
+snippet .user-select
+.user-select(${1:@argument: none});${2}
+endsnippet
+snippet .columns
+.columns(${1:@colwidth: 250px}, ${2:@colcount: 0}, ${3:@colgap: 50px}, ${4:@columnRuleColor: #EEE}, ${5:@columnRuleStyle: solid}, ${6:@columnRuleWidth: 1px});${7}
+
+#---------------add by 2013/07/08-------------------------------
+endsnippet
+snippet .transition-delay
+.transition-delay(${1:@duration: 0.2s});${2}
 
 endsnippet
-
-# vim:ft=snippets:
+snippet .animation
+.animation(${1:@arguments});${2}
+endsnippet
+snippet .animation-duration
+.animation-duration(${1:@arguments});${2}
+endsnippet
+snippet .animation-delay
+.animation-delay(${1:@arguments});${2}
+endsnippet
+snippet .animation-timing-function
+.animation-timing-function(${1:@arguments});${2}
+endsnippet
+snippet .perspective
+.perspective(${1:@argument: 1200px});${2}
+endsnippet
+snippet .backface-visibility
+.backface-visibility(${1:@argument: hidden});${2}
+endsnippet
+snippet .transform-style
+.transform-style(${1:@argument: preserve-3d});${2}
+endsnippet
+snippet .transform-origin
+.transform-origin(${1:@argument:10% 10% 10%);${2}
+endsnippet
+snippet .display
+.display(${1:@value|flex|inline-flex});${2}
+endsnippet
+snippet .flex
+.flex(${1:@flex});${2}
+endsnippet
+snippet .flex-direction
+.flex-direction(${1:@direction|row|row-reverse|column|column-reverse});${2}
+endsnippet
+snippet .order
+.order(${1:@order});${2}
+endsnippet
+snippet .flex-wrap
+.flex-wrap(${1:@wrap-method|wrap|wrap-reverse|nowrap});${2}
+endsnippet
+snippet .align-items
+.align-items(${1:@values});${2}
+endsnippet
+snippet .align-self
+.align-self(${1:@values});${2}
+endsnippet
+snippet .justify-content
+.justify-content(${1:@value|flex-end|flex-start});${2}
+endsnippet
