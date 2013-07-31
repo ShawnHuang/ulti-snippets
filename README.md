@@ -19,8 +19,9 @@ have been merged into this collection seamlessly and without further comments.
 
 -- vim:ft=rst:nospell:
 
-=============================================================================
+
  Syntax                                                  *UltiSnips-syntax*
+=============================================================================
 
 This chapter describes how to write your own snippets and snippet definition
 syntax. Examples are used to help illustrate.
