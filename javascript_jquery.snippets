@@ -256,8 +256,8 @@ endsnippet
 snippet Dwhen
 $.when(${1:deferreds})${2}
 endsnippet
-snippet data
-${1:obj}.data(${2:obj})${3}
+snippet data "(data)" w
+data(${1:key}${2:,${3:value}})$0
 endsnippet
 snippet dataa
 $.data('${1:selector expression}', '${2:key}'${3:, 'value'})${4}
@@ -287,10 +287,10 @@ endsnippet
 snippet die
 ${1:obj}.die(${2:event}, ${3:handler})${4}
 endsnippet
-snippet each
-${1:obj}.each(function (index) {
-	${2:this.innerHTML = this + " is the element, " + index + " is the position";}
-});
+snippet each "(each)" w
+each(function (index) {
+	${1:this.innerHTML = this + " is the element, " + index + " is the position";}
+});$0
 endsnippet
 snippet el
 $('<${1}/>'${2:, {}})${3}
@@ -562,10 +562,10 @@ endsnippet
 snippet offsetp
 ${1:obj}.offsetParent()${2}
 endsnippet
-snippet on
-${1:obj}.on('${2:events}', '${3:selector expression}', function (${4:event}) {
-	${5:// event handler}
-});
+snippet on "(on)" w
+on('${1:events}',${2: '${3:selector expression}',} ${4:function (${5:event}) {
+	${6:// event handler}
+}});$0
 endsnippet
 snippet one
 ${1:obj}.one('${2:event name}', function (${3:e}) {
@@ -741,7 +741,7 @@ snippet text
 ${1:obj}.text(${2:'some text'})${3}
 endsnippet
 snippet this
-$(this)${1}
+$(this)
 endsnippet
 snippet toarr
 ${1:obj}.toArray()

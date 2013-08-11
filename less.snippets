@@ -2,7 +2,9 @@ extends css
 #########################################
 #           snipmate snippets           #
 #########################################
-
+snippet .import
+@import "${1}.less";${0}
+endsnippet
 snippet .gradient
 .gradient(${1:@color: #F5F5F5}, ${2:@start: #EEE}, ${3:@stop: #FFF});${4}
 endsnippet
@@ -80,6 +82,9 @@ snippet .animation-timing-function
 endsnippet
 snippet .perspective
 .perspective(${1:@argument: 1200px});${2}
+endsnippet
+snippet .perspective-origin
+.perspective-origin(${1:@arguments: 50% 200%});${2}
 endsnippet
 snippet .backface-visibility
 .backface-visibility(${1:@argument: hidden});${2}

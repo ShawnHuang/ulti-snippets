@@ -5,11 +5,51 @@
 snippet ! "!important CSS (!)"
 ${1:!important}
 endsnippet
+#snippet { "properties { } ( } )"
+#{
+#	/* $1 */
+#	$0
+#
+#endsnippet
+snippet /* "/* comment */" i
+/* $1 */$0
+endsnippet
 
-snippet fixed "Fixed Position Bottom 100% wide IE6"
-${2:bottom: auto;}top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-${1:THE HEIGHT OF THIS THING IN PIXELS}));
-${3:left: expression(eval(document.documentElement.scrollLeft));
-}${4:width: expression(eval(document.documentElement.clientWidth));}$0
+snippet { "properties { } ( } )" i
+{
+	$0
+
+endsnippet
+
+snippet hover
+${1}:hover{
+	${2}	
+}
+endsnippet
+snippet after
+${1}:after{
+	${2}	
+}
+endsnippet
+snippet first-child
+${1}:first-child{
+	${2}
+}
+endsnippet
+snippet nth-child
+${1}:nth-child(${2}){
+	${3}
+}
+endsnippet
+
+#snippet fixed "Fixed Position Bottom 100% wide IE6"
+#${2:bottom: auto;}top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-${1:THE HEIGHT OF THIS THING IN PIXELS}));
+#${3:left: expression(eval(document.documentElement.scrollLeft));
+#}${4:width: expression(eval(document.documentElement.clientWidth));}$0
+#endsnippet
+
+snippet background "background:  color image repeat attachment position (background)"
+background: #${1:DDD}${2: url($3) ${4:repeat/repeat-x/repeat-y/no-repeat} ${5:scroll/fixed} ${6:top left/top center/top right/center left/center center/center right/bottom left/bottom center/bottom right/x-% y-%/x-pos y-pos}};$0
 endsnippet
 
 snippet background "background-attachment: scroll:fixed (background)"
@@ -26,6 +66,10 @@ endsnippet
 
 snippet background "background-color:  color-rgb (background)"
 background-color: rgb(${1:255},${2:255},${3:255});$0
+endsnippet
+
+snippet background "background-color:  color-rgba (background)"
+background-color: rgba(${1:255},${2:255},${3:255},${4:1});$0
 endsnippet
 
 snippet background "background-color:  transparent (background)"
@@ -46,10 +90,6 @@ endsnippet
 
 snippet background "background-repeat:  r:r-x:r-y:n-r (background)"
 background-repeat: ${1:repeat/repeat-x/repeat-y/no-repeat};$0
-endsnippet
-
-snippet background "background:  color image repeat attachment position (background)"
-background:${6: #${1:DDD}} url($2) ${3:repeat/repeat-x/repeat-y/no-repeat} ${4:scroll/fixed} ${5:top left/top center/top right/center left/center center/center right/bottom left/bottom center/bottom right/x-% y-%/x-pos y-pos};$0
 endsnippet
 
 snippet border "border-bottom-color: size style color (border)"
@@ -148,6 +188,14 @@ snippet color "color:  color-rgb (color)"
 color: rgb(${1:255},${2:255},${3:255});$0
 endsnippet
 
+snippet color "color:  color-rgba (color)"
+color: rgba(${1:255},${2:255},${3:255},${4:1});$0
+endsnippet
+
+snippet content "content: char"
+content: '$1';$0
+endsnippet
+
 snippet cursor "cursor: type (cursor)"
 cursor: ${1:default/auto/crosshair/pointer/move/*-resize/text/wait/help};$0
 endsnippet
@@ -160,12 +208,12 @@ snippet direction "direction: ltr|rtl (direction)"
 direction: ${1:ltr|rtl};$0
 endsnippet
 
-snippet display "display: block (display)"
-display: block;$0
+snippet display "display: common-types (display)"
+display: ${1:none/inline/inline-block/block/list-item/run-in/compact/marker};$0
 endsnippet
 
-snippet display "display: common-types (display)"
-display: ${1:none/inline/block/list-item/run-in/compact/marker};$0
+snippet display "display: block (display)"
+display: block;$0
 endsnippet
 
 snippet display "display: inline (display)"
@@ -177,7 +225,7 @@ display: ${1:table/inline-table/table-row-group/table-header-group/table-footer-
 endsnippet
 
 snippet float "float: left:right:none (float)"
-float: ${1:left/right/none};$0
+float: ${1:l}${1/(l)|(r)|(n).*/(?1:eft)(?2:ight)(?3:one)/};$0
 endsnippet
 
 snippet font "font-family:   family (font)"
@@ -208,6 +256,19 @@ snippet font "font: size font (font)"
 font: ${1:75%} ${2:"Lucida Grande", "Trebuchet MS", Verdana,} ${3:sans-}serif;$0
 endsnippet
 
+snippet height "height: 100px" 
+height: $1;$0
+endsnippet
+snippet @keyframes
+@-webkit-keyframes ${1:name}{${2:.animation()}}
+	 @-moz-keyframes $1{$2}
+		@-ms-keyframes $1{$2}
+				@keyframes $1{$2}
+$0
+endsnippet
+snippet left "left: size"
+left: $1;$0
+endsnippet
 snippet letter "letter-spacing:   length-em (letter)"
 letter-spacing: $1em;$0
 endsnippet
@@ -216,12 +277,12 @@ snippet letter "letter-spacing:   length-px (letter)"
 letter-spacing: $1px;$0
 endsnippet
 
-snippet list "list-style-image: url (list)"
-list-style-image: url($1);$0
+snippet line-height "line-height"
+line-height: $1;$0
 endsnippet
 
-snippet list "list-style-position: pos (list)"
-list-style-position: ${1:inside/outside};$0
+snippet list "list-style: type position image (list)"
+list-style: ${1:none/disc/circle/square/decimal/zero}${2: ${3:inside/outside} url($4)};$0
 endsnippet
 
 snippet list "list-style-type: asian (list)"
@@ -244,8 +305,24 @@ snippet list "list-style-type: roman-alpha-greek (list)"
 list-style-type: ${1:lower-roman/upper-roman/lower-alpha/upper-alpha/lower-greek/lower-latin/upper-latin};$0
 endsnippet
 
-snippet list "list-style: type position image (list)"
-list-style: ${1:none/disc/circle/square/decimal/zero} ${2:inside/outside} url($3);$0
+snippet list "list-style-image: url (list)"
+list-style-image: url($1);$0
+endsnippet
+
+snippet list "list-style-position: pos (list)"
+list-style-position: ${1:inside/outside};$0
+endsnippet
+
+snippet margin "margin:   all (margin)"
+margin: ${1:20px};$0
+endsnippet
+
+snippet margin "margin: T R B L (margin)"
+margin: ${1:20px} ${2:0px} ${3:40px} ${4:0px};$0
+endsnippet
+
+snippet margin "margin: V H (margin)"
+margin: ${1:20px} ${2:0px};$0
 endsnippet
 
 snippet margin "margin-bottom: length (margin)"
@@ -264,18 +341,6 @@ snippet margin "margin-top: length (margin)"
 margin-top: ${1:20px};$0
 endsnippet
 
-snippet margin "margin:   all (margin)"
-margin: ${1:20px};$0
-endsnippet
-
-snippet margin "margin: T R B L (margin)"
-margin: ${1:20px} ${2:0px} ${3:40px} ${4:0px};$0
-endsnippet
-
-snippet margin "margin: V H (margin)"
-margin: ${1:20px} ${2:0px};$0
-endsnippet
-
 snippet marker "marker-offset: auto (marker)"
 marker-offset: auto;$0
 endsnippet
@@ -284,8 +349,24 @@ snippet marker "marker-offset: length (marker)"
 marker-offset: ${1:10px};$0
 endsnippet
 
+snippet outline "outline: color style width"
+outline: ${1:#000000}${2: ${3:none/dotted/dashed/solid/double/groove/ridge/inset/outset/inherit} ${4:thin/medium/thick/inherit/length}};$0
+endsnippet
+
 snippet overflow "overflow: type (overflow)"
 overflow: ${1:visible/hidden/scroll/auto};$0
+endsnippet
+
+snippet padding "padding:   all (padding)"
+padding: ${1:20px};$0
+endsnippet
+
+snippet padding "padding:   V H (padding)"
+padding: ${1:20px} ${2:0px};$0
+endsnippet
+
+snippet padding "padding:   T R B L (padding)"
+padding: ${1:20px} ${2:0px} ${3:40px} ${4:0px};$0
 endsnippet
 
 snippet padding "padding-bottom: length (margin)"
@@ -304,35 +385,74 @@ snippet padding "padding-top: length (margin)"
 padding-top: ${1:20px};$0
 endsnippet
 
-snippet padding "padding:   T R B L (padding)"
-padding: ${1:20px} ${2:0px} ${3:40px} ${4:0px};$0
-endsnippet
-
-snippet padding "padding:   V H (padding)"
-padding: ${1:20px} ${2:0px};$0
-endsnippet
-
-snippet padding "padding:   all (padding)"
-padding: ${1:20px};$0
-endsnippet
-
-snippet position "position: type (position)"
-position: ${1:static/relative/absolute/fixed};$0
-endsnippet
-
-#snippet { "properties { } ( } )"
-#{
-#	/* $1 */
-#	$0
-#
+#snippet position "position: type (position)"
+#position: ${1:static/relative/absolute/fixed};$0
 #endsnippet
 
-snippet { "properties { } ( } )" w
-$1{
-	$0
-
+snippet pointer-events "pointer-events: none"
+pointer-events: $1;$0
 endsnippet
 
+snippet position "position: static/relative/absolute/fixed"
+position: ${1:s}${1/(s)|(r)|(a)|(f)|.*/(?1:tatic)(?2:elative)(?3:bsolute)(?4:ixed)/};$0
+endsnippet
+
+snippet right "right: size"
+right: $1;$0
+endsnippet
+
+snippet scrollbar "scrollbar"
+scrollbar-base-color:       ${1:#CCCCCC};${2:
+scrollbar-arrow-color:      ${3:#000000};
+scrollbar-track-color:      ${4:#999999};
+scrollbar-3dlight-color:    ${5:#EEEEEE};
+scrollbar-highlight-color:  ${6:#FFFFFF};
+scrollbar-face-color:       ${7:#CCCCCC};
+scrollbar-shadow-color:     ${9:#999999};
+scrollbar-darkshadow-color: ${8:#666666};}
+endsnippet
+
+snippet selection "selection"
+$1::-moz-selection,
+$1::selection {
+	color: ${2:inherit};
+	background: ${3:inherit};
+}
+endsnippet
+snippet top "top: size"
+top: ${1};$0
+endsnippet
+snippet text "text-align: left:center:right (txt)"
+text-align: ${1:left/right/center/justify};$0
+endsnippet
+
+snippet text "text-decoration: none:underline:overline:line-through:blink (text)"
+text-decoration: ${1:none/underline/overline/line-through/blink};$0
+endsnippet
+
+snippet text "text-indent: length (text)"
+text-indent: ${1:10}px;$0
+endsnippet
+
+snippet text "text-shadow: color-hex x y blur (text)"
+text-shadow: #${1:DDD} ${2:10px} ${3:10px} ${4:2px};$0
+endsnippet
+
+snippet text "text-shadow: color-rgb x y blur (text)"
+text-shadow: rgb(${1:255},${2:255},${3:255}) ${4:10px} ${5:10px} ${6:2px};$0
+endsnippet
+
+snippet text "text-shadow: none (text)"
+snippet first-child
+${1}:first-child{
+	${2}
+}
+endsnippet
+snippet nth-child
+${1}:nth-child(${2}){
+	${3}
+}
+endsnippet
 snippet scrollbar "scrollbar"
 scrollbar-base-color:       ${1:#CCCCCC};${2:
 scrollbar-arrow-color:      ${3:#000000};
@@ -390,6 +510,10 @@ endsnippet
 
 snippet visibility "visibility: type (visibility)"
 visibility: ${1:visible/hidden/collapse};$0
+endsnippet
+
+snippet width "width: 100px"
+width: $1;$0
 endsnippet
 
 snippet white "white-space:  normal:pre:nowrap (white)"
