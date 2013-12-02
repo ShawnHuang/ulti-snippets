@@ -29,7 +29,42 @@ snippet spar "Paragraph" b
 ##### ${1:Paragraph Name} #####
 $0
 endsnippet
+#############
+#  Comment  #
+#############
 
+snippet box "Box" !b
+<!--
+	${1:Comment here}
+-->
+$0
+endsnippet
+snippet bbox "Box" !b
+<!--
+	${1:Comment here}
+-->
+$0
+endsnippet
+############################
+#  Blockquotes&List        #
+############################
+snippet quotes+ "quotes" b
+>	$1
+${2:quotes+}$0
+endsnippet
+snippet "\*(\s){1}-" "list" br
+	- 
+endsnippet
+snippet "-(\s){1}\+" "list" br
+	+ 
+endsnippet
+##########
+#  Line  #
+##########
+snippet - "line" b
+----------------------------------------
+$0
+endsnippet
 ################
 # Common stuff #
 ################
@@ -40,7 +75,6 @@ endsnippet
 snippet img "Image"
 ![${1:pic alt}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
 endsnippet
-
 ################
 #   keyboard   #
 ################
