@@ -122,6 +122,10 @@ else
 }
 endsnippet
 
+# printf("${1:%s}\n"      if the group $2 has matched, insert "text", otherwise "other text"
+#       fist% or escape %
+# ${1/([^%]|%%)*(%.)?.*/  (?2:, :\);)  /}$2
+# ${1/([^%]|%%)*(%.)?.*/  (?2:\);)     /}
 snippet printf "printf .. (printf)"
 printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
 endsnippet

@@ -1,0 +1,466 @@
+###########################################################################
+#                          SNIPPETS for MARKDOWN_MATHJAX                  #
+###########################################################################
+
+###########################
+# FUNCTION                #
+###########################
+
+snippet lim "lim" i
+lim${1:_\{$2\}}{$3}$0
+endsnippet
+
+snippet binom "binom" i
+binom{$1}{$2}$0
+endsnippet
+
+snippet sqrt "sqrt" i
+sqrt${1:[$2]}{$3}$0
+endsnippet
+
+snippet sum "sum" i
+sum_{$1}^{$2} $0
+endsnippet
+
+snippet sum "sum:displaystyle" i
+displaystyle\\sum_{$1}^{$2} $0
+endsnippet
+
+snippet int "integrals" i
+int_{$1}^{$2} $0
+endsnippet
+
+snippet int "integrals:limits" i
+int\\limits_{$1}^{$2} $0
+endsnippet
+
+snippet frac "frac" i
+frac{$1}{$2}$0
+endsnippet
+
+snippet frac "rfrac: a/b" i
+rfrac{$1}{$2}$0
+endsnippet
+
+snippet frac "sfrac" i
+sfrac{$1}{$2}$0
+endsnippet
+
+snippet frac "cfrac: a/(a/(a+b)+b)" i
+cfrac{$1}{$2}$0
+endsnippet
+
+snippet pow "pow"
+${1:x}^{${2:n}}$0
+endsnippet
+
+snippet mod "bmod: x mod y"
+${1:x} \\bmod ${2:y}
+endsnippet
+
+snippet mod "pmod: x(mod y)"
+${1:x} \\pmod ${2:y}
+endsnippet
+
+snippet choose "choose(binom)"
+\{${1:x} \\choose ${2:y}\}
+endsnippet
+
+snippet over "over(frac)"
+\{${1:x} \\over ${2:y}\}
+endsnippet
+
+###########################
+# EXPRESSION              #
+###########################
+
+snippet intervals "[a,b]"
+{[{${1:a}},{${2:b}}]}$0
+endsnippet
+
+snippet intervals "]a,b["
+{]{${1:a}},{${2:b}}[}$0
+endsnippet
+
+snippet intervals "(a,b)"
+{({${1:a}},{${2:b}})}$0
+endsnippet
+
+snippet intervals "]a,b]"
+{]{${1:a}},{${2:b}}]}$0
+endsnippet
+
+snippet intervals "(a,b]"
+{({${1:a}},{${2:b}}]}$0
+endsnippet
+
+snippet intervals "[a,b["
+{[{${1:a}},{${2:b}}[}$0
+endsnippet
+
+snippet intervals "[a,b)"
+{[{${1:a}},{${2:b}})}$0
+endsnippet
+
+snippet array "array aligment: [tcb], elements aligment: {lcd}"
+\\begin\{array\}${1:[$2]\{$3\}}
+  ${4:a & b\\\\
+  c & d}
+\\end{array}$0
+endsnippet
+
+snippet array "array aligment: [tcb], elements aligment: {lcd}"
+\\begin\{array\}${1:[$2]\{$3\}}
+  ${4:a & b\\\\
+  c & d}
+\\end{array}$0
+endsnippet
+
+snippet matrix "matrix, [lcd]:aligment"
+\\begin\{matrix${1:*}\}${1/(^\*$)/(?1:\[)/}$2${1/(^\*$)/(?1:\])/}
+  ${3:a & b\\\\
+  c & d}
+\\end{matrix}$0
+endsnippet
+
+snippet matrix "pmatrix:(), [lcd]:aligment"
+\\begin\{pmatrix${1:*}\}${1/(^\*$)/(?1:\[)/}$2${1/(^\*$)/(?1:\])/}
+  ${3:a & b\\\\
+  c & d}
+\\end{pmatrix}$0
+endsnippet
+
+snippet matrix "bmatrix:[], [lcd]:aligment"
+\\begin\{bmatrix${1:*}\}${1/(^\*$)/(?1:\[)/}$2${1/(^\*$)/(?1:\])/}
+  ${3:a & b\\\\
+  c & d}
+\\end{bmatrix}$0
+endsnippet
+
+snippet matrix "Bmatrix:{}, [lcd]:aligment"
+\\begin\{Bmatrix${1:*}\}${1/(^\*$)/(?1:\[)/}$2${1/(^\*$)/(?1:\])/}
+  ${3:a & b\\\\
+  c & d}
+\\end{Bmatrix}$0
+endsnippet
+
+snippet matrix "vmatrix:||, [lcd]:aligment"
+\\begin\{vmatrix${1:*}\}${1/(^\*$)/(?1:\[)/}$2${1/(^\*$)/(?1:\])/}
+  ${3:a & b\\\\
+  c & d}
+\\end{vmatrix}$0
+endsnippet
+
+snippet matrix "Vmatrix:|| ||, [lcd]:aligment"
+\\begin\{Vmatrix${1:*}\}${1/(^\*$)/(?1:\[)/}$2${1/(^\*$)/(?1:\])/}
+  ${3:a & b\\\\
+  c & d}
+\\end{Vmatrix}$0
+endsnippet
+
+snippet matrix "smallmatrix: inline"
+\begin{smallmatrix}
+${1:a&b \\\\
+c&d}
+\end{smallmatrix}$0
+endsnippet
+
+snippet matrix "bordermatrix: not supported"
+\\bordermatrix{
+	~ & x & y \cr
+  A & 1 & 0 \cr
+  B & 0 & 1 \cr
+}
+endsnippet
+
+snippet case "case: {"
+\begin{cases} 
+  ${1:1 			& \text\{if \} x \geq 0 \\\\
+  0       & \text\{if \} x < 0}
+\end{cases}$0
+endsnippet
+
+snippet case "dcase: display style({), not supported"
+\begin{dcases} 
+  ${1:1 			& \text\{if \} x \geq 0 \\\\
+  0       & \text\{if \} x < 0}
+\end{dcases}$0
+endsnippet
+
+###########################
+# TYPO                    #
+###########################
+
+snippet space "space (1 font size)"
+\\quad
+endsnippet
+
+snippet space "space (2 font size)"
+\\qquad
+endsnippet
+
+snippet space "space (3/18 font size)"
+\\,
+endsnippet
+
+snippet space "space (4/18 font size)"
+\\:
+endsnippet
+
+snippet space "space (5/18 font size)"
+\\;
+endsnippet
+
+snippet space "space (-3/18 font size)"
+\\!
+endsnippet
+
+snippet hline "horizontal line"
+\\hline
+endsnippet
+
+snippet dots "dots ...(default)"
+\\dots
+endsnippet
+
+snippet dots "dots ...(commas)"
+\\dotsc
+endsnippet
+
+snippet dots "dots ...(binary operation/relations)"
+\\dotsb
+endsnippet
+
+snippet dots "dots ...(multiplication)"
+\\dotsm
+endsnippet
+
+snippet dots "dots ...(integrals)"
+\\dotsi
+endsnippet
+
+snippet dots "dots ...(other)"
+\\dotso
+endsnippet
+
+snippet dots "dots ...(no auto whitespace)"
+\\ldots
+endsnippet
+
+snippet dots "dots ...(center)"
+\\cdots
+endsnippet
+
+snippet dots "dots ...(vertical)"
+\\vdots
+endsnippet
+
+snippet dots "dots ...(diagonal)"
+\\ddots
+endsnippet
+
+snippet dots "dots ...(inverse diagonal)"
+\\iddots
+endsnippet
+
+snippet dots "dots ...(a row span n columns)"
+\\hddotsfor{$1}$0
+endsnippet
+
+snippet align "left"
+\\left
+endsnippet
+
+snippet align "middle"
+\\middle
+endsnippet
+
+snippet align "right"
+\\right
+endsnippet
+
+snippet size "big"
+\\big
+endsnippet
+
+snippet size "Big"
+\\Big
+endsnippet
+
+snippet size "bigg"
+\\bigg
+endsnippet
+
+snippet size "Bigg"
+\\Bigg
+endsnippet
+
+
+###########################
+# FONT FORMATTED          #
+###########################
+
+snippet text "Normal"
+\\text{$1}$0
+endsnippet
+
+snippet text "Roman font family"
+\\textrm{$1}$0
+endsnippet
+
+snippet text "Bold"
+\\textbf{$1}$0
+endsnippet
+
+snippet text "Italicised"
+\\textit{$1}$0
+endsnippet
+
+snippet text "Math: Default"
+\\mathnormal{$1}$0
+endsnippet
+
+snippet text "Math: Roman font family"
+\\mathrm{$1}$0
+endsnippet
+
+snippet text "Math: Italicised"
+\\mathit{$1}$0
+endsnippet
+
+snippet text "Math: Bold"
+\\mathbf{$1}$0
+endsnippet
+
+snippet text "Math: Sans-serif"
+\\mathsf{$1}$0
+endsnippet
+
+snippet text "Math: Monospace"
+\\mathtt{$1}$0
+endsnippet
+
+snippet text "Math: Fraktur"
+\\mathfrak{$1}$0
+endsnippet
+
+snippet text "Math: Calligraphy"
+\\mathcal{$1}$0
+endsnippet
+
+snippet text "Math: Blackboard"
+\\mathbb{$1}$0
+endsnippet
+
+snippet text "Math: Script"
+\\mathscr{$1}$0
+endsnippet
+
+snippet bold "Bold Symbol"
+\\boldsymbol{$1}$0
+endsnippet
+
+snippet color "color"
+\\color{${1:red}}$0
+endsnippet
+
+snippet color "color for minus"
+\\mathbin{\\color{${1:red}}-}$0
+endsnippet
+
+snippet accent "single prime: a' "
+a'$0
+endsnippet
+
+snippet accent "dual prime: a'' "
+a''$0
+endsnippet
+
+snippet accent "triple prime: a''' "
+a'''$0
+endsnippet
+
+snippet accent "quad prime: a'''' "
+a''''$0
+endsnippet
+
+snippet accent "hat: 𝑥̂"
+\\hat{$1}$0
+endsnippet
+
+snippet accent "bar: 𝑥̄"
+\\bar{$1}$0
+endsnippet
+
+snippet accent "grave: 𝑥̀"
+\\grave{$1}$0
+endsnippet
+
+snippet accent "acute: 𝑥́"
+\\acute{$1}$0
+endsnippet
+
+snippet accent "dot: 𝑥̇"
+\\dot{$1}$0
+endsnippet
+
+snippet accent "ddot: 𝑥̈"
+\\ddot{$1}$0
+endsnippet
+
+snippet accent "dddot: "
+\\dddot{$1}$0
+endsnippet
+
+snippet accent "not:  ̸𝑥"
+\\not{$1}$0
+endsnippet
+
+snippet accent "mathring: 𝑥̊"
+\\mathring{$1}$0
+endsnippet
+
+snippet accent "check: 𝑥̌"
+\\check{$1}$0
+endsnippet
+
+snippet accent "breve: 𝑥̆"
+\\breve{$1}$0
+endsnippet
+
+snippet accent "vector: 𝑥̄"
+\\vec{$1}$0
+endsnippet
+
+snippet accent "tilde: 𝑥̃"
+\\tilde{$1}$0
+endsnippet
+
+snippet accent "underline: _"
+\\underline{$1}$0
+endsnippet
+
+snippet accent "overrightarrow: 𝑥̄𝑥̄->"
+\\overrightarrow{$1}$0
+endsnippet
+
+snippet accent "overleftarrow: <-𝑥̄𝑥̄"
+\\overleftarrow{$1}$0
+endsnippet
+
+snippet accent "overline: 𝑥̄𝑥̄𝑥̄"
+\\overline{$1}$0
+endsnippet
+
+snippet accent "widehat: 𝑥𝑥̂𝑥"
+\\widehat{$1}$0
+endsnippet
+
+snippet accent "widetilde: 𝑥𝑥̃𝑥"
+\\widetilde{$1}$0
+endsnippet
+
+snippet accent "stackrel+frown: 𝑥𝑥̂𝑥"
+\\stackrel\\frown{$1}$0
+endsnippet
+
