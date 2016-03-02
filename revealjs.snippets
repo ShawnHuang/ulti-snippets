@@ -3,6 +3,18 @@
 ###########################################################################
 extends markdown
 
+snippet layout "Title" b
+# $1
+### $2
+
+<small>$3</small>
+endsnippet
+
+snippet layout "Content" b
+# $1
+
+$2
+endsnippet
 
 snippet layout "Two columns" b
 <div markdown="1" class="left-column">
@@ -14,6 +26,17 @@ $2
 </div>
 
 <div style="clear:both;" />
+endsnippet
+
+snippet layout "Slogan" b
+<!-- .slide: style="text-align:left" -->
+# $1
+endsnippet
+
+snippet layout "Quote" b
+## $1
+
+> &ldquo;$2&rdquo;
 endsnippet
 
 snippet attr "For elements" b
