@@ -1,0 +1,64 @@
+###########################################################################
+#                          SNIPPETS for REVEALJS                          #
+###########################################################################
+extends markdown
+
+
+snippet layout "Two columns" b
+<div markdown="1" class="left-column">
+$1
+</div>
+
+<div markdown="1" class="right-column">
+$2
+</div>
+
+<div style="clear:both;" />
+endsnippet
+
+snippet attr "For elements" b
+<!-- .element: $1 -->
+endsnippet
+
+snippet attr "For slides" b
+<!-- .slide: ${1:data-background="$2"}${3: data-background-video="$4"}${5: data-transition="${6:none/fade/slide/convex/concave/zoom}"}${7: data-transition="${8:none/fade/slide/convex/concave/zoom}"}$9 -->
+endsnippet
+
+snippet fragment "fragment" b
+<!-- .element: class="fragment"${1: data-fragment-index="$2"} -->
+endsnippet
+
+snippet fragment "grow" b
+<!-- .element: class="fragment grow"${1: data-fragment-index="$2"} -->
+endsnippet
+
+snippet fragment "shrink" b
+<!-- .element: class="fragment shrink"${1: data-fragment-index="$2"} -->
+endsnippet
+
+snippet fragment "fade-out" b
+<!-- .element: class="fragment fade-out"${1: data-fragment-index="$2"} -->
+endsnippet
+
+snippet fragment "current-visible" b
+<!-- .element: class="fragment current-visible"${1: data-fragment-index="$2"} -->
+endsnippet
+
+snippet fragment "highlight-red/blue/green" b
+<!-- .element: class="fragment highlight-$1"${2: data-fragment-index="$3"} -->
+endsnippet
+
+snippet fragment "custom" b
+<div markdown="1" class="fragment"
+${1		 :data-fragment-index="$2"}
+		 style="position:absolute;
+			 top:$3;right:$4;$5">
+$6
+</div>
+endsnippet
+
+snippet table "Table" !b
+|center  |left  |
+|:------:|:-----|
+|c       |d     |
+endsnippet

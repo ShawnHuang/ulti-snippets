@@ -118,6 +118,9 @@ ${2:${VISUAL:Content}}
 `!p snip.rv = _get_comment_format()[0]` `!p snip.rv = foldmarker()[1]` $1 `!p snip.rv = _get_comment_format()[2]`
 endsnippet
 
+snippet modeline "Modeline" b
+vim: set ft=$1 ts=${2:8} sw=${3:4} tw=${4:0} noet :$0
+endsnippet
 ##########################
 # LOREM IPSUM GENERATORS #
 ##########################

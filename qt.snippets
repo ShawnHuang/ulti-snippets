@@ -1,0 +1,355 @@
+extends cpp
+
+snippet main "QT Main" !b
+#include "mainwindow.h"
+#include <QApplication>
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    $1
+    return a.exec();
+}
+endsnippet
+
+snippet layout "QHBoxLayout" b
+QHBoxLayout ${1:*layout} = new QHBoxLayout;
+$1->addWidget(${2:widget});
+$1->setMenuBar(QMenuBar);
+${3:parent}.setLayout($1);
+endsnippet
+
+snippet layout "QVBoxLayout" b
+QVBoxLayout ${1:*layout} = new QVBoxLayout;
+$1->addWidget(${2:widget});
+$1->setMenuBar(QMenuBar);
+${3:parent}.setLayout($1);
+endsnippet
+
+snippet layout "QGridLayout" b
+QGridLayout ${1:*layout} = new QGridLayout;
+$1->addWidget(${2:widget});
+$1->setMenuBar(QMenuBar);
+${3:parent}.setLayout($1);
+endsnippet
+
+snippet layout "QFormLayout" b
+QFormLayout ${1:*layout} = new QFormLayout;
+$1->addWidget(${2:widget});
+$1->setMenuBar(QMenuBar);
+${3:parent}.setLayout($1);
+endsnippet
+
+snippet layout "QStackedLayout" b
+QStackedLayout ${1:*layout} = new QStackedLayout;
+$1->addWidget(${2:widget});
+$1->setMenuBar(QMenuBar);
+${3:parent}.setLayout($1);
+endsnippet
+
+snippet widget "Widget with paintEvent" b
+//!!! Qt4/Qt5
+inclucde <QPainter>
+class ${1:name} : public QWidget {
+    Q_OBJECT
+public:
+    $1(QWidget *parent = 0);
+protected:
+    void paintEvent(QPaintEvent *);
+    void keyPressEvent(QKeyEvent * event);
+    void keyReleaseEvent(QKeyEvent * event);
+    void mouseDoubleClickEvent(QMouseEvent * event);
+    void mouseMoveEvent(QMouseEvent * event);
+    void mousePressEvent(QMouseEvent * event);
+    void mouseReleaseEvent(QMouseEvent * event);
+private:
+    QPainter painter;
+};
+
+$1::$1(QWidget *parent):
+  QWidget(parent)
+{
+  resize(800,600);
+  setWindowTitle(tr("Paint Demo"));
+}
+
+void $1::paintEvent(QPaintEvent *)
+{
+  painter.begin(this);
+  painter.drawLine(80, 100, 650, 500);
+}
+endsnippet
+
+snippet widget "QLabel"
+#include <QLabel>
+QLabel ${1:label}("${2:Hello World}");
+endsnippet
+
+snippet widget "QPushButton"
+#include <QPushButton>
+QPushButton ${1:button}("${2:click}");
+endsnippet
+
+snippet widget "QSpinBox" b
+#include <QSpinBox>
+QSpinBox ${1:spinbox}(${2:&parent});
+spinbox.setRange(${3:0}, ${4:100});
+spinbox.setValue(${5:0});
+${6:void (QSpinBox:: *spinBoxSignal)(int) = &QSpinBox::valueChanged;}
+endsnippet
+
+snippet widget "QSlider" b
+#include <QSlider>
+QSlider ${1:slider}(QT::${2:H}${2/(H)|(V)|.*/(?1:orizontal)(?2:ertical)/},${3:&parent});
+slider.setRange(${4:0}, ${5:100});
+slider.setValue(${6:0});
+endsnippet
+
+snippet dialog "QDialog" b
+QDialog dialog(this);
+//QDialog *dialog = new QDialog;
+dialog.setWindowTitle(tr("Hello, dialog!"));
+//dialog.setAttribute(Qt::WA_DeleteOnClose);
+dialog.exec();
+endsnippet
+
+snippet dialog "QColorDialog" b
+endsnippet
+
+snippet dialog "QFileDialog" b
+endsnippet
+
+snippet dialog "QFontDialog" b
+endsnippet
+
+snippet dialog "QInputDialog" b
+endsnippet
+
+snippet dialog "QMessageBox" b
+void QMessageBox::about(QWidget * parent, const QString & title, const QString & text);
+void QMessageBox::aboutQt(QWidget * parent, const QString & title = QString());
+StandardButton QMessageBox::critical(QWidget * parent, const QString & title, const QString & text, StandardButtons buttons = Ok, StandardButton defaultButton = NoButton);
+StandardButton QMessageBox::information(QWidget * parent, const QString & title, const QString & text, StandardButtons buttons = Ok, StandardButton defaultButton = NoButton);
+StandardButton QMessageBox::question(QWidget * parent, const QString & title, const QString & text, StandardButtons buttons = StandardButtons( Yes | No ), StandardButton defaultButton = NoButton);
+StandardButton QMessageBox::warning(QWidget * parent, const QString & title, const QString & text, StandardButtons buttons = Ok, StandardButton defaultButton = NoButton);
+endsnippet
+
+snippet dialog "QPageSetupDialog" b
+endsnippet
+
+snippet dialog "QPrintDialog" b
+endsnippet
+
+snippet dialog "QPrintPreviewDialog" b
+endsnippet
+
+snippet dialog "QProgressDialog" b
+endsnippet
+
+snippet mainwindow "MainWindow.h without UI" b
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+#include <QMainWindow>
+class MainWindow : public QMainWindow {
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = 0);
+    ~MainWindow();
+private:
+    void open();
+    QAction *openAction;
+};
+#endif // MAINWINDOW_H
+endsnippet
+
+snippet mainwindow "MainWindow.h with UI" b
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QMainWindow>
+
+namespace Ui {
+class MainWindow;
+}
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
+
+private slots:
+    void on_actionExit_triggered();
+
+private:
+    Ui::MainWindow *ui;
+};
+
+#endif // MAINWINDOW_H
+endsnippet
+
+snippet mainwindow "MainWindow.cpp without UI" b
+#include "mainwindow.h"
+#include <QAction>
+#include <QMenuBar>
+#include <QMessageBox>
+#include <QStatusBar>
+#include <QToolBar>
+
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
+    setWindowTitle(tr("Main Window"));
+
+    openAction = new QAction(QIcon(":/images/doc-open"), tr("&Open..."), this);
+    openAction->setShortcuts(QKeySequence::Open);
+    openAction->setStatusTip(tr("Open an existing file"));
+    connect(openAction, &QAction::triggered, this, &MainWindow::open);
+
+    QMenu *file = menuBar()->addMenu(tr("&File"));
+    file->addAction(openAction);
+
+    QToolBar *toolBar = addToolBar(tr("&File"));
+    toolBar->addAction(openAction);
+
+    QStatusBar *statusbar = statusBar() ;
+}
+MainWindow::~MainWindow() {
+  
+}
+void MainWindow::open() {
+    QMessageBox::information(this, tr("Information"), tr("Open"));
+}
+endsnippet
+
+snippet mainwindow "MainWindow.cpp with UI" b
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::on_actionExit_triggered()
+{
+    this->close();
+}
+endsnippet
+
+snippet object "QObject.h(sender)"
+#include <QObject>
+#include <QDebug>
+class ${1:name} : public QObject 
+{
+    Q_OBJECT
+public:
+    $1(const QString & name) : obj_name(name)
+    {
+    }
+
+    // sender
+    void ${2:action}() {
+        emit ${3:send}(obj_name);
+    }
+
+signals:
+    void $3(const QString &name);
+
+private:
+    QString obj_name;
+};
+endsnippet
+
+snippet object "QObject.h(receiver)"
+#include <QObject>
+#include <QDebug>
+class ${1:name} : public QObject 
+{
+    Q_OBJECT
+public:
+    $1()
+    {
+    }
+
+    // receiver
+    void receive(const QString & name) {
+        ${4: qDebug() << "Receive: " << name;}
+    }
+};
+endsnippet
+
+snippet connect "QObject::conncet(const QObject * sender, const char * signal, const QObject * receiver, const char * method, Qt::ConnectionType type = Qt::AutoConnection)" b
+QObject::connect(${1:const QObject * sender}, ${2:const char * signal}, ${3:const QObject * receiver}, ${4:const char * method}, ${5:Qt::ConnectionType type = Qt::AutoConnection});
+endsnippet
+
+snippet connect "connect(const QObject * sender, const QMetaMethod & signal, const QObject * receiver, const QMetaMethod & method, Qt::ConnectionType type = Qt::AutoConnection)" b
+QObject::connect(${1:const QObject * sender}, ${2:const QMetaMethod & signal}, ${3:const QObject * receiver}, ${4:const QMetaMethod & method}, ${5:Qt::ConnectionType type = Qt::AutoConnection});
+endsnippet
+
+snippet connect "connect(const QObject * sender, PointerToMemberFunction signal, const QObject * receiver, PointerToMemberFunction method, Qt::ConnectionType type = Qt::AutoConnection)" b
+QObject::connect(${1:const QObject * sender}, ${2:PointerToMemberFunction signal}, ${3:const QObject * receiver}, ${4:PointerToMemberFunction method}, ${5:Qt::ConnectionType type = Qt::AutoConnection});
+endsnippet
+
+snippet connect "connect(const QObject * sender, PointerToMemberFunction signal, Functor functor)" b
+QObject::connect(${1:const QObject * sender}, ${2:PointerToMemberFunction signal}, ${3:Functor functor});
+endsnippet
+
+snippet connect "connect(const QObject * sender, PointerToMemberFunction signal, const QObject * context, Functor functor, Qt::ConnectionType type = Qt::AutoConnection)" b
+QObject::connect(${1:const QObject * sender}, ${2:PointerToMemberFunction signal}, ${3:const QObject * context}, ${4:Functor functor}, ${5:Qt::ConnectionType type = Qt::AutoConnection});
+endsnippet
+
+snippet painter "QPainter" b
+painter.begin(this);
+painter.setViewport(0, 0, 200, 200);
+painter.setWindow(0, 0, 200, 200);
+painter.setPen(Qt::red);
+painter.setBrush(Qt::blue);
+painter.fillRect(0, 0, 200, 200, Qt::red);
+painter.translate(0,100);
+painter.rotate(30);
+painter.scale(1.2, 1.4);
+painter.shear(1.2, 1.4);
+painter.save();
+painter.restore();
+endsnippet
+
+snippet painter "QPainterPath" b
+QPainterPath circlePath;
+circlePath.addEllipse(QRect(0, 0, 100, 100));
+if(circlePath.contains(QPoint(49,99)))
+    painter.drawPath(circlePath);
+endsnippet
+
+snippet string "QString:sprintf" b
+QString ${1:name};
+$1.sprintf("${2:%s}\n"${2/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet string "QString:arg" b
+QString("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:\).arg\(:\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet rcc "Recource.qrc" b
+<RCC>
+    ${1:<qresource prefix="/">
+        <file alias="name">resources/image.png</file>
+    </qresource>}
+</RCC>
+endsnippet
+
+snippet qrc "QResource" b
+<qresource prefix="${1:/resources}" ${2:lang="fr"}>
+    <file alias="${3:name}">${4:file}</file>
+</qresource>
+endsnippet
+# vim:ft=snippets expandtab tabstop=4 shiftwidth=4:
